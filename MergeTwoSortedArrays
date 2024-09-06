@@ -1,0 +1,25 @@
+
+# Merge two sorted arrays
+def merge(A, B):
+    lenA, lenB = len(A), len(B)
+    kA = kB = 0
+    C = []
+
+    M = 100000000000
+    A.append(M)
+    B.append(M)
+
+    for i in range(lenA + lenB):
+        if A[kA] <= B[kB]:
+            C.append(A[kA])
+            kA += 1
+        else:
+            C.append(B[kB])
+            kB += 1
+    return C
+
+A = [-4, 2, 5, 8]
+B = [-3, 2, 3, 4, 9]
+C = merge(A, B)
+print(C)
+
