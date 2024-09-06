@@ -1,15 +1,22 @@
+'''
+Merging Two Sorted Arrays Implementation
 
-# Merge two sorted arrays
+Input: two arrays sorted in ascending order, A and B
+Output: a sorted array C consisting of all elements from A and B
+
+@author kylegilber
+'''
+
 def merge(A, B):
     lenA, lenB = len(A), len(B)
-    kA = kB = 0
+    kA = kB = 0                     # point to the smallest #s in A and B respectively
     C = []
 
-    M = 100000000000
-    A.append(M)
-    B.append(M)
+    M = 100000000000                # arbitrary # larger than any in A and B
+    A.append(M)                     # add M to end of A and B
+    B.append(M)                     # prevents index out of range error
 
-    for i in range(lenA + lenB):
+    for i in range(lenA + lenB):    # runtime depends on size of input arrays
         if A[kA] <= B[kB]:
             C.append(A[kA])
             kA += 1
@@ -18,8 +25,12 @@ def merge(A, B):
             kB += 1
     return C
 
-A = [-4, 2, 5, 8]
-B = [-3, 2, 3, 4, 9]
-C = merge(A, B)
-print(C)
+def main():
+    arrA = [-4, 2, 5, 8]
+    arrB = [-3, 2, 3, 4]
+    arrayC = merge(arrA, arrB)
+    # Prints:
+    # [-4, -3, 2, 2, 3, 4, 5, 8, 9]
+    print(arrayC)
+
 
