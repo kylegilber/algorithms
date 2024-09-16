@@ -1,0 +1,59 @@
+'''
+Counting Inversions Implementation
+
+Input: an array A
+Output: tuple - (sorted array, inversion count)
+
+Inversions in A are defined as:
+{(i, j) | i < j, A[i] > A[j]}
+
+@author kylegilber
+'''
+
+def countInv(A):
+    # base case occurs when A has 1 element
+    n = len(A)
+    if(n <= 1): return (A, 0)
+
+    # divide and recursively sort array 
+    (A1, I1) = countInv(A[0 : n//2])
+    (A2, I2) = countInv(A[n//2 : n])
+
+    # count inversions while merging
+    (A3, I3) = mergeCountInv(A1, A2)
+
+    return (A3, I1 + I2 + I3)
+
+# count inversions while merging two sorted arrays
+def mergeCountInv(A, B):
+    m, n = len(A), len(B)
+    C = [] 
+
+    # maintain pointers for each array's smallest element
+    i = j = 0
+
+    # store the number of inversions between the arrays
+    inv = 0
+
+    # large value prevents IndexError when iterating i,j
+    M = 10000000
+    A.append(M)
+    B.append(M)
+
+    for k in range(0, m + n):
+        if A[i] <= B[j]:
+            C.append(A[i])
+            i += 1
+        else:
+            C.append(B[j])
+            j += 1 
+            inv += m - i
+    return (C, inv)
+
+def main():
+    arr = [4, 3, 7, 2, 5]
+    arrInv = countInv(arr)
+    # Expected Output:
+    # ([2, 3, 4, 5, 7], 5)
+    print(arrInv)
+main()

@@ -10,10 +10,9 @@ Output: a sorted array A' in ascending order
 def mergesort(A):
     # base case occurs when A has one element (already sorted)
     n = len(A)
-    if n <= 1:
-        return A
+    if n <= 1: return A
     
-    # halve and recursively sort array
+    # divide and recursively sort array
     leftA = mergesort(A[0 : n//2])
     rightA = mergesort(A[n//2 : n])
 
@@ -22,7 +21,7 @@ def mergesort(A):
 
 # merges two sorted arrays into a single sorted array
 def merge(A, B):
-    lenA, lenB = len(A), len(B)
+    m, n = len(A), len(B)
     C = []
 
     # init pointers for each array's smallest element
@@ -34,7 +33,7 @@ def merge(A, B):
     A.append(M)
     B.append(M)
 
-    for i in range(lenA + lenB):
+    for i in range(m + n):
         if A[kA] <= B[kB]:
             C.append(A[kA])
             kA += 1
@@ -48,6 +47,6 @@ def main():
     arr = [2, 4, -4, 2, 8, -3, 5, 3]
     arr = mergesort(arr)
     # Expected Output:
-    # [-4, -4, 2, 2, 3, 4, 5, 8]
+    # [-4, -3, 2, 2, 3, 4, 5, 8]
     print(arr)
 main()
