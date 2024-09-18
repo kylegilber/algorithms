@@ -9,7 +9,7 @@ Output: a sorted array C consisting of all elements from A and B
 
 def merge(A, B):
     lenA, lenB = len(A), len(B)
-    kA = kB = 0                     # point to index of smallest #s in A and B
+    pA = pB = 0                     # point to index of smallest #s in A and B
     C = []
 
     M = 100000000000                # arbitrary # larger than any in A and B
@@ -17,12 +17,12 @@ def merge(A, B):
     B.append(M)                     # prevents index out of range error
 
     for i in range(lenA + lenB):    # runtime depends on size of input arrays
-        if A[kA] <= B[kB]:
-            C.append(A[kA])
-            kA += 1
+        if A[pA] <= B[pB]:
+            C.append(A[pA])
+            pA += 1
         else:
-            C.append(B[kB])
-            kB += 1
+            C.append(B[pB])
+            pB += 1
     return C
 
 def main():

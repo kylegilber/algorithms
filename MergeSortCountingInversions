@@ -9,7 +9,7 @@ Inversions in A are defined as:
 
 @author kylegilber
 '''
- 
+
 def countInv(A):
     # base case occurs when A has 1 element
     n = len(A)
@@ -30,7 +30,7 @@ def merge(A, B):
     C = [] 
 
     # maintain pointers for each array's smallest element
-    i = j = 0
+    pA = pB = 0
 
     # store the number of inversions between the arrays
     inv = 0
@@ -41,13 +41,13 @@ def merge(A, B):
     B.append(M)
 
     for k in range(0, m + n):
-        if A[i] <= B[j]:
-            C.append(A[i])
-            i += 1
+        if A[pA] <= B[pB]:
+            C.append(A[pA])
+            pA += 1
         else:
-            C.append(B[j])
-            j += 1 
-            inv += m - i
+            C.append(B[pB])
+            pB += 1 
+            inv += m - pA
     return (C, inv)
 
 def main():

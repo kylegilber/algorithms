@@ -1,5 +1,5 @@
 '''
-Mergesort implementation
+Mergesort Implementation
 
 Input: an array A
 Output: a sorted array A' in ascending order
@@ -25,7 +25,7 @@ def merge(A, B):
     C = []
 
     # init pointers for each array's smallest element
-    kA = kB = 0
+    i = j = 0
 
     # add large value at the end of each array
     # prevents index out of range error when iterating pointers
@@ -34,12 +34,12 @@ def merge(A, B):
     B.append(M)
 
     for i in range(m + n):
-        if A[kA] <= B[kB]:
-            C.append(A[kA])
-            kA += 1
+        if A[i] <= B[j]:
+            C.append(A[i])
+            i += 1
         else:
-            C.append(B[kB])
-            kB += 1
+            C.append(B[j])
+            j += 1
     
     return C
 
