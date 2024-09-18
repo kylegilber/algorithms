@@ -9,7 +9,7 @@ Inversions in A are defined as:
 
 @author kylegilber
 '''
-
+ 
 def countInv(A):
     # base case occurs when A has 1 element
     n = len(A)
@@ -20,12 +20,12 @@ def countInv(A):
     (A2, I2) = countInv(A[n//2 : n])
 
     # count inversions while merging
-    (A3, I3) = mergeCountInv(A1, A2)
+    (A3, I3) = merge(A1, A2)
 
     return (A3, I1 + I2 + I3)
 
-# count inversions while merging two sorted arrays
-def mergeCountInv(A, B):
+# count inversions between two sorted arrays while merging
+def merge(A, B):
     m, n = len(A), len(B)
     C = [] 
 
